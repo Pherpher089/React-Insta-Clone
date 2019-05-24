@@ -5,15 +5,18 @@ class CommentSection extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-
+            data: props.data
         }
     }
-
+     
     render(){
         return(
-            <h1>This is the comment section</h1>
-        )
-    };
+            <div>
+                <h1>{this.state.data.username}</h1>
+                <p>{this.state.data.text}</p>
+            </div>
+         )
+    }
 }
 
 export default CommentSection;

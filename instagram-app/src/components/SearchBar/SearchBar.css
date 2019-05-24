@@ -1,0 +1,14 @@
+.search-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background: white;
+    border: 1px solid grey;
+}
+
+.ig-logos{
+    display: flex;
+    flex-direction: row;
+}
