@@ -12,8 +12,8 @@ class PostContainer extends React.Component{
 
     render(){
         return (
-            <div>{this.state.data.map(post =>(
-                    <Post data={post} />
+            <div>{this.state.data.map((post, i) =>(
+                    <Post key={i} data={post} />
             ))}
             </div>
         )
