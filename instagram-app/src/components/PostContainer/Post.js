@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './PostContainer.css'
-import CommentSection from './CommentSection/CommentSection';
+import CommentSection from '../CommentSection/CommentSection';
 
  class Post extends React.Component{
      constructor(props){
         super(props);
         this.state = {
             data: props.data,
+            likes: props.data.likes,
+            timeStamp: props.data.timestamp,
             thumbNail: props.data.thumbnailUrl,
             userName: props.data.username,
             imgUrl: props.data.imageUrl,
@@ -17,41 +19,36 @@ import CommentSection from './CommentSection/CommentSection';
 
     render(){
         return(
-            <div className="Post">
+            <div className="post">
                 <div className='post-header'>
-                    <img src={this.state.thumbNail} alt=""/> 
+                    <img className='thumb-nail'src={this.state.thumbNail} alt=""/> 
                     <h1>{this.state.userName}</h1>
                 </div>
-                <img src={this.state.imgUrl} alt=""/>
-                <div>{this.state.comments.map((comment, i) =>(
+
+                <div className='post-content'>
+                    <img className='post-img' src={this.state.imgUrl} alt=""/>
+                    <h1>{this.state.likes} Likes</h1>
+                </div>
+    
+                <div className='comment-section'>
+                    {this.state.comments.map((comment, i) =>(
                     <CommentSection key={i} data={comment} />
-                ))}</div>  
+                    ))}
+                    <h1 className='time-stamp'>{this.state.timeStamp}</h1>
+                </div> 
+                <form className='add-comment'>   
+                    <input type='text' placeholder="Add a comment..." />
+                </form>
             </div>   
         )
     }
 };
 
-// const Post = (props)=>{
-
-//     return(
-//         <div className="Post">
-//             <div className='post-header'>
-//                 <img src={props.data.thumbnailUrl} alt=""/> 
-//                 <h1>{props.data.username}</h1>
-//             </div>
-//             <img src={props.data.imageUrl} alt=""/>
-//             <div>{props.data.comments.map((comment, i) =>(
-//                 <CommentSection key={i} data={comment}  />
-//             ))}</div>  
-//         </div>   
-//     )
-// }
-
 Post.propTypes = {
     data: PropTypes.shape({
         thumbnailUrl: PropTypes.string,
         username: PropTypes.string,
-        imageUrl: PropTypes.array,
+        imageUrl: PropTypes.string,
         comments: PropTypes.array
     })
 }

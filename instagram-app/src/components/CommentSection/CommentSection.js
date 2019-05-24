@@ -12,7 +12,7 @@ class CommentSection extends React.Component{
      
     render(){
         return(
-            <div>
+            <div className='comment'>
                 <h1>{this.state.data.username}</h1>
                 <p>{this.state.data.text}</p>
             </div>

@@ -1,5 +1,6 @@
 .App {
-  height: 100vh;
-  text-align: center;
+  height: 100%;
+  width: 100%;
+  /*text-align: center;*/
   background: rgb(238, 238, 238);
 }

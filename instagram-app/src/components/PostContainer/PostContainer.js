@@ -12,7 +12,7 @@ class PostContainer extends React.Component{
 
     render(){
         return (
-            <div>{this.state.data.map((post, i) =>(
+            <div className='post-container'>{this.state.data.map((post, i) =>(
                     <Post key={i} data={post} />
             ))}
             </div>
