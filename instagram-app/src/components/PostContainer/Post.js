@@ -8,15 +8,40 @@ import CommentSection from '../CommentSection/CommentSection';
         super(props);
         this.state = {
             data: props.data,
+            id: props.data.id,
             likes: props.data.likes,
             timeStamp: props.data.timestamp,
             thumbNail: props.data.thumbnailUrl,
             userName: props.data.username,
             imgUrl: props.data.imageUrl,
-            comments: props.data.comments
+            comments: props.data.comments,
+            addComment: ''
         }
     }
 
+
+    AddComment = (event)=> {
+
+        event.preventDefault();
+        if(this.state.addComment === '')
+        {
+            return;
+        }
+
+        let newComment = {
+            username: "Pherpher089",
+            text: this.state.addComment
+        }
+
+        let newComments = [...this.state.comments, newComment]
+
+        this.setState({comments: newComments, addComment: ''});
+    };
+
+    changeHandeler = event =>{
+        console.log(event.target.value);
+        this.setState({addComment: event.target.value})
+    }
     render(){
         return(
             <div className="post">
@@ -27,6 +52,10 @@ import CommentSection from '../CommentSection/CommentSection';
 
                 <div className='post-content'>
                     <img className='post-img' src={this.state.imgUrl} alt=""/>
+                    <div className='icons'>
+                        <img className='icon' src={require('C:/Users/Chris Tutor/Documents/Lambda/React-Insta-Clone/React-Insta-Clone/instagram-app/src/components/assets/post_heart_icon.png')}alt=""/>
+                        <img className="icon" src={require('C:/Users/Chris Tutor/Documents/Lambda/React-Insta-Clone/React-Insta-Clone/instagram-app/src/components/assets/message_icon.png')} alt=""/>
+                    </div>
                     <h1>{this.state.likes} Likes</h1>
                 </div>
     
@@ -36,8 +65,8 @@ import CommentSection from '../CommentSection/CommentSection';
                     ))}
                     <h1 className='time-stamp'>{this.state.timeStamp}</h1>
                 </div> 
-                <form className='add-comment'>   
-                    <input type='text' placeholder="Add a comment..." />
+                <form className='add-comment' onSubmit={this.AddComment}>   
+                    <input type='text' placeholder="Add a comment..." value={this.state.addComment} onChange={this.changeHandeler} />
                 </form>
             </div>   
         )
