@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import './PostContainer.css'
 import CommentSection from '../CommentSection/CommentSection';
 
- class Post extends React.Component{
-     constructor(props){
+
+ class Post extends React.Component{    
+    constructor(props){
         super(props);
         this.state = {
             data: props.data,
@@ -15,10 +16,10 @@ import CommentSection from '../CommentSection/CommentSection';
             userName: props.data.username,
             imgUrl: props.data.imageUrl,
             comments: props.data.comments,
-            addComment: ''
+            addComment: '',
+            isLiked: false
         }
     }
-
 
     AddComment = (event)=> {
 
@@ -42,6 +43,38 @@ import CommentSection from '../CommentSection/CommentSection';
         console.log(event.target.value);
         this.setState({addComment: event.target.value})
     }
+
+    OnLike = ()=>{
+        if(!this.state.isLiked)
+        {
+            this.setState({likes: this.state.likes + 1, isLiked: true})
+            return
+        }
+
+        this.setState({likes: this.state.likes - 1, isLiked: false})
+    }
+
+    IsLiked = (x)=>{
+
+        if(x)
+        {
+            if(this.state.isLiked)
+            {
+                return 'liked'
+            }
+    
+            return ''
+        }
+        else{
+            if(this.state.isLiked)
+        {
+            return ''
+        }
+
+        return 'liked'
+        }
+    }
+
     render(){
         return(
             <div className="post">
@@ -53,7 +86,8 @@ import CommentSection from '../CommentSection/CommentSection';
                 <div className='post-content'>
                     <img className='post-img' src={this.state.imgUrl} alt=""/>
                     <div className='icons'>
-                        <img className='icon' src={require('C:/Users/Chris Tutor/Documents/Lambda/React-Insta-Clone/React-Insta-Clone/instagram-app/src/components/assets/post_heart_icon.png')}alt=""/>
+                        <img className={`icon heart ${this.IsLiked(true)}`} src={require('./icons/post_heart_icon.png')} alt="" onClick={this.OnLike}/>
+                        <img className={`icon heart ${this.IsLiked(false)}`} src={require('./icons/post_heart_liked_icon.png')} alt="" onClick={this.OnLike}/>
                         <img className="icon" src={require('C:/Users/Chris Tutor/Documents/Lambda/React-Insta-Clone/React-Insta-Clone/instagram-app/src/components/assets/message_icon.png')} alt=""/>
                     </div>
                     <h1>{this.state.likes} Likes</h1>
