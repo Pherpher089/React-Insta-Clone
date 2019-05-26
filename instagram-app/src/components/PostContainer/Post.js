@@ -88,7 +88,7 @@ import CommentSection from '../CommentSection/CommentSection';
                     <div className='icons'>
                         <img className={`icon heart ${this.IsLiked(true)}`} src={require('./icons/post_heart_icon.png')} alt="" onClick={this.OnLike}/>
                         <img className={`icon heart ${this.IsLiked(false)}`} src={require('./icons/post_heart_liked_icon.png')} alt="" onClick={this.OnLike}/>
-                        <img className="icon" src={require('C:/Users/Chris Tutor/Documents/Lambda/React-Insta-Clone/React-Insta-Clone/instagram-app/src/components/assets/message_icon.png')} alt=""/>
+                        <img className="icon" src={require('./icons/message_icon.png')} alt=""/>
                     </div>
                     <h1>{this.state.likes} Likes</h1>
                 </div>

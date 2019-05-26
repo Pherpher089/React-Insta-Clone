@@ -5,7 +5,8 @@ class SearchBar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-
+            value: props.value,
+            changeHandeler: props.changeHandeler
         }
     }
 
@@ -22,7 +23,8 @@ class SearchBar extends React.Component{
                     
                     <div className="search-field">
                         <img src={require('./assets/spyglass_icon.png')} />
-                        <input  placeholder="Search"/>
+                        <input  type='texy' placeholder="Search"  onChange={this.state.changeHandeler} value={this.state.value}/>
+                        
                     </div>
 
                     <div className="user-buttons">
