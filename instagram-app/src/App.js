@@ -1,30 +1,30 @@
 import React from 'react';
 import './App.css';
 import dummyData from './dummy-data.js'
-
-import PostContainer from './components/PostContainer/PostContainer.js';
-import SearchBar from './components/SearchBar/SearchBar.js';
+import PostPage from './components/PostContainer/PostPage.js'
+import WithAuthenticate from './components/authentication/WithAuthenticate'
 
 const data = dummyData;
+const ComponentFromWithAuthenticate = WithAuthenticate(PostPage)
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      searchValue: 'gay'
+      searchValue: '',
+      postToRender: data,
     }
   }
 
-  changeHandeler = event =>{
-    console.log(event.target.value);
-    this.setState({searchValue: event.target.value})
+  //TBH i dont think this does a thing...
+  componentDidMount(){
+    this.setState({postToRender: data})
   }
+
   render(){
-    console.log(this.state.searchValue);
     return (
       <div className="App">
-        <SearchBar searchValue={this.state.searchValue} changeHandeler={this.changeHandeler} />
-        <PostContainer data = {data} />
+        <ComponentFromWithAuthenticate data={this.state.postToRender} />
       </div>
     );
   }

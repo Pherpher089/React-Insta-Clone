@@ -11,6 +11,7 @@ class PostContainer extends React.Component{
     }
 
     render(){
+        console.log('Post Container rerendering' + this.state.data)
         return (
             <div className='post-container'>{this.state.data.map((post, i) =>(
                     <Post key={i} data={post} />
