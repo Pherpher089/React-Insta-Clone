@@ -1,6 +1,5 @@
 import React from 'react';
 import './PostContainer.css';
-
 import PostContainer from './PostContainer.js';
 import SearchBar from '../SearchBar/SearchBar';
 
@@ -15,7 +14,8 @@ class PostPage extends React.Component{
     }
 
     changeHandeler = event =>{
-        this.setState({searchValue: event.target.value})
+      console.log(this.SearchPosts(event.target.value))
+      this.setState({searchValue: event.target.value, postToRender: this.SearchPosts(event.target.value)})
     }
 
     SearchPosts = (search) =>{
@@ -23,22 +23,23 @@ class PostPage extends React.Component{
     
         if(search === '')
         {
-          return this.state.postToRender;
+          return this.props.data;
         }
     
-        for(let i=0; i<this.state.postToRender.length; i++)
+        for(let i=0; i<this.props.data.length; i++)
         {
           for(let j=0; j< search.length; j++)
           {
-            if(this.state.postToRender[i].username[j] === search[j])
+            if(this.props.data[i].username[j] === search[j])
             {
               if(j === search.length - 1)
               {
-                newData.push(this.state.postToRender[i]);
+                newData.push(this.props.data[i]);
               }
             }
           }
         }
+        console.log('Search Data: ' + newData);
         return newData;
     }
 

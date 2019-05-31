@@ -18,9 +18,8 @@ class PostContainer extends React.Component{
     }
 
     render(){
-        console.log('Post Container rerendering' + this.state.data)
         return (
-            <PostContainerDiv >{this.state.data.map((post, i) =>(
+            <PostContainerDiv >{this.props.data.map((post, i) =>(
                     <Post key={i} data={post} />
             ))}
             </PostContainerDiv>

@@ -22,11 +22,9 @@ const PostHeaderDiv = styled.div`
     justify-content: flex-start;
     align-items: center;
 `
-
 const PostImg = styled.img`
     width: 100%;
 `
-
 const ThumbNailImg = styled.img`
     margin: 1rem 2rem 1rem 2rem;
     border-radius: 100px;
@@ -44,7 +42,6 @@ const PostContentDiv = styled.div`
     flex-direction: column; 
     justify-content: flex-start;    
 `
-
 const IconsDiv = styled.div`
     margin-left: 1rem;
 `
@@ -68,7 +65,6 @@ const TimeStampH1 = styled.h1`
     margin-left: 1rem;
     margin-bottom: 1rem;
 `
-
 const AddCommentInput = styled.input`
     border: none;
     margin-left: 1rem;
@@ -76,7 +72,6 @@ const AddCommentInput = styled.input`
         outline: none;
     }
 `
-
 const IconImg = styled.img`
     margin-left: 1rem;
 `
@@ -159,8 +154,8 @@ const LikesH1 = styled.h1`
 
     render(){
         return(
-            <PostDiv /*className="post"*/>
-                <PostHeaderDiv /*className='post-header'*/>
+            <PostDiv>
+                <PostHeaderDiv>
                     <ThumbNailImg className='thumb-nail'src={this.state.thumbNail} alt=""/> 
                     <UserNameH1>{this.state.userName}</UserNameH1>
                 </PostHeaderDiv>
