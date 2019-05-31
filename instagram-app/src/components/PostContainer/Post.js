@@ -2,7 +2,89 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './PostContainer.css'
 import CommentSection from '../CommentSection/CommentSection';
+import styled from 'styled-components'
 
+const PostDiv = styled.div`
+    width: 70rem;
+    margin-top: 3rem;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    border: 1px solid lightgrey;
+`
+const PostHeaderDiv = styled.div`
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+`
+
+const PostImg = styled.img`
+    width: 100%;
+`
+
+const ThumbNailImg = styled.img`
+    margin: 1rem 2rem 1rem 2rem;
+    border-radius: 100px;
+    height: 4rem;
+    width: 4rem;
+`
+
+const UserNameH1 = styled.h1`
+    font-size: 1.5rem;
+    font-weight: 600;
+`
+const PostContentDiv = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;    
+`
+
+const IconsDiv = styled.div`
+    margin-left: 1rem;
+`
+const CommentSectionDiv = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+`
+const AddCommentForm = styled.form`
+    width: 100%;
+    height: 5em;
+    border:1px solid lightgrey;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+`
+const TimeStampH1 = styled.h1`
+    font-size: .9rem;
+    color: grey;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+`
+
+const AddCommentInput = styled.input`
+    border: none;
+    margin-left: 1rem;
+    &:focus{
+        outline: none;
+    }
+`
+
+const IconImg = styled.img`
+    margin-left: 1rem;
+`
+const LikesH1 = styled.h1`
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+`
 
  class Post extends React.Component{    
     constructor(props){
@@ -77,32 +159,34 @@ import CommentSection from '../CommentSection/CommentSection';
 
     render(){
         return(
-            <div className="post">
-                <div className='post-header'>
-                    <img className='thumb-nail'src={this.state.thumbNail} alt=""/> 
-                    <h1>{this.state.userName}</h1>
-                </div>
+            <PostDiv /*className="post"*/>
+                <PostHeaderDiv /*className='post-header'*/>
+                    <ThumbNailImg className='thumb-nail'src={this.state.thumbNail} alt=""/> 
+                    <UserNameH1>{this.state.userName}</UserNameH1>
+                </PostHeaderDiv>
 
-                <div className='post-content'>
-                    <img className='post-img' src={this.state.imgUrl} alt=""/>
-                    <div className='icons'>
-                        <img className={`icon heart ${this.IsLiked(true)}`} src={require('./icons/post_heart_icon.png')} alt="" onClick={this.OnLike}/>
-                        <img className={`icon heart ${this.IsLiked(false)}`} src={require('./icons/post_heart_liked_icon.png')} alt="" onClick={this.OnLike}/>
-                        <img className="icon" src={require('./icons/message_icon.png')} alt=""/>
-                    </div>
-                    <h1>{this.state.likes} Likes</h1>
-                </div>
+                <PostContentDiv>
+                    <PostImg src={this.state.imgUrl} alt=""/>
+                    <IconsDiv className='icons'>
+                        <IconImg className={` heart ${this.IsLiked(true)}`} src={require('./icons/post_heart_icon.png')} alt="" onClick={this.OnLike}/>
+
+                        <IconImg className={`heart ${this.IsLiked(false)}`} src={require('./icons/post_heart_liked_icon.png')} alt="" onClick={this.OnLike}/>
+
+                        <IconImg className="icon" src={require('./icons/message_icon.png')} alt=""/>
+                    </IconsDiv>
+                    <LikesH1>{this.state.likes} Likes</LikesH1>
+                </PostContentDiv>
     
-                <div className='comment-section'>
+                <CommentSectionDiv>
                     {this.state.comments.map((comment, i) =>(
                     <CommentSection key={i} data={comment} />
                     ))}
-                    <h1 className='time-stamp'>{this.state.timeStamp}</h1>
-                </div> 
-                <form className='add-comment' onSubmit={this.AddComment}>   
-                    <input type='text' placeholder="Add a comment..." value={this.state.addComment} onChange={this.changeHandeler} />
-                </form>
-            </div>   
+                    <TimeStampH1>{this.state.timeStamp}</TimeStampH1>
+                </CommentSectionDiv> 
+                <AddCommentForm onSubmit={this.AddComment}>   
+                    <AddCommentInput type='text' placeholder="Add a comment..." value={this.state.addComment} onChange={this.changeHandeler} />
+                </AddCommentForm>
+            </PostDiv>   
         )
     }
 };

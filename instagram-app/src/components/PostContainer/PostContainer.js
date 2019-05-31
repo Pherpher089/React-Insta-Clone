@@ -1,6 +1,13 @@
 import React from 'react';
 import './PostContainer.css';
 import Post from './Post.js'
+import styled from 'styled-components'
+
+const PostContainerDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+`
 
 class PostContainer extends React.Component{
     constructor(props){
@@ -13,10 +20,10 @@ class PostContainer extends React.Component{
     render(){
         console.log('Post Container rerendering' + this.state.data)
         return (
-            <div className='post-container'>{this.state.data.map((post, i) =>(
+            <PostContainerDiv >{this.state.data.map((post, i) =>(
                     <Post key={i} data={post} />
             ))}
-            </div>
+            </PostContainerDiv>
         )
     }
 }
